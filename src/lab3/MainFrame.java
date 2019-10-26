@@ -19,7 +19,7 @@ public class MainFrame extends JFrame {
     // Константы с исходным размером окна приложения
     private static final int WIDTH = 800;
     private static final int HEIGHT = 500;
-    private static DecimalFormat formatter = (DecimalFormat) NumberFormat.getInstance();;
+    private static DecimalFormat formatter = (DecimalFormat) NumberFormat.getInstance();
     // Массив коэффициентов многочлена
     private Double[] coefficients;
 
@@ -46,12 +46,6 @@ public class MainFrame extends JFrame {
 
     // Модель данных с результатами вычислений
     private GornerTableModel data;
-
-    private JDialog createDialog(String title, boolean modal) {
-        JDialog dialog = new JDialog(this, title, modal);
-        dialog.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        return dialog;
-    }
 
     private String addExtension(String filename, String extension){
         if (filename.endsWith("." + extension)) return filename;
@@ -120,8 +114,9 @@ public class MainFrame extends JFrame {
                     fileChooser = new JFileChooser();
                     fileChooser.setCurrentDirectory(new File("."));
                 }
-                if (fileChooser.showSaveDialog(MainFrame.this) == JFileChooser.APPROVE_OPTION) ;
-                saveToGraphicsFile(fileChooser.getSelectedFile());
+                if (fileChooser.showSaveDialog(MainFrame.this) == JFileChooser.APPROVE_OPTION) {
+                    saveToGraphicsFile(fileChooser.getSelectedFile());
+                }
             }
         };
         // Добавить соответствующий пункт подменю в меню "Файл"
@@ -183,14 +178,17 @@ public class MainFrame extends JFrame {
         Action aboutProgramAction = new AbstractAction("О программе") {
             @Override
             public void actionPerformed(ActionEvent e) {
+
                 final int WIDTH = 250;
                 final int HEIGHT = 250;
-                JDialog a = createDialog("О программе", false);
-                a.setSize(WIDTH, HEIGHT);
-                a.setResizable(false);
+                JDialog dialog = new JDialog(MainFrame.this, "О программе", false);
+                dialog.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+                dialog.setSize(WIDTH, HEIGHT);
+                dialog.setResizable(false);
+
                 Toolkit kit = Toolkit.getDefaultToolkit();
                 // Отцентрировать окно приложения на экране
-                a.setLocation((kit.getScreenSize().width - WIDTH) / 2, (kit.getScreenSize().height - HEIGHT) / 2);
+                dialog.setLocation((kit.getScreenSize().width - WIDTH) / 2, (kit.getScreenSize().height - HEIGHT) / 2);
                 JPanel panel = new JPanel();
                 JLabel about = new JLabel("Автор: Коробкин Александр, 6 группа");
                 ImageIcon image = new ImageIcon("author.jpg");
@@ -198,8 +196,8 @@ public class MainFrame extends JFrame {
                 imageLabel.setIcon(image);
                 panel.add(about);
                 panel.add(imageLabel);
-                a.add(panel);
-                a.setVisible(true);
+                dialog.add(panel);
+                dialog.setVisible(true);
             }
         };
 
