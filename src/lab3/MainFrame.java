@@ -170,9 +170,10 @@ public class MainFrame extends JFrame {
                 mainPanel.add(imageBox);
                 mainPanel.add(Box.createVerticalGlue());
 
-
-                JOptionPane.showMessageDialog(MainFrame.this,
-                        mainPanel, "О программе", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane pane = new JOptionPane(mainPanel, JOptionPane.PLAIN_MESSAGE);
+                JDialog dialog = pane.createDialog(MainFrame.this, "О программе");
+                dialog.setModal(false);
+                dialog.setVisible(true);
             }
         };
 
