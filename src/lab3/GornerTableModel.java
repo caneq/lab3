@@ -30,13 +30,11 @@ public class GornerTableModel extends AbstractTableModel {
     }
 
     public int getColumnCount() {
-        // В данной модели два столбца
         return 4;
     }
 
     public int getRowCount() {
-        // Вычислить количество точек между началом и концом отрезка
-        // исходя из шага табулирования
+        // количество точек между началом и концом отрезка
         return new Double(Math.ceil((to-from)/step)).intValue()+1;
     }
 
@@ -48,7 +46,7 @@ public class GornerTableModel extends AbstractTableModel {
             return x;
         }
         else if(col == 1) {
-            // Если запрашивается значение 2-го столбца, то это значение многочлена
+            //значение многочлена
             if (coefficients.length == 1) return coefficients[0];
             Double result = coefficients[0]*x + coefficients[1];
             for(int i = 1; i < coefficients.length - 1; i++) {
@@ -58,7 +56,7 @@ public class GornerTableModel extends AbstractTableModel {
             return result;
         }
         else if(col == 2){
-            // Если запрашивается значение 2-го столбца, то это значение многочлена
+            //значение многочлена с коэффициентами в обратном порядке
             if (coefficients.length == 1) return coefficients[0];
             Double result = coefficients[coefficients.length - 1]*x + coefficients[coefficients.length - 2];
             for(int i = coefficients.length - 2; i >= 1; i--) {
