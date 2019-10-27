@@ -34,11 +34,11 @@ public class GornerTableCellRenderer implements TableCellRenderer {
         } else {
             if((row + col)%2 == 1){
                 panel.setBackground(Color.BLACK);
-                label.setText("<html><font color=\"white\">" + label.getText() + "</font></html>");
+                label.setForeground(Color.WHITE);
             }
             else{
                 panel.setBackground(Color.WHITE);
-                label.setText("<html><font color=\"black\">" + label.getText() + "</font></html>");
+                label.setForeground(Color.BLACK);
             }
         }
         return panel;
