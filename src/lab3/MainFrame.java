@@ -178,26 +178,32 @@ public class MainFrame extends JFrame {
         Action aboutProgramAction = new AbstractAction("О программе") {
             @Override
             public void actionPerformed(ActionEvent e) {
+                Box mainPanel = Box.createVerticalBox();
 
-                final int WIDTH = 250;
-                final int HEIGHT = 250;
-                JDialog dialog = new JDialog(MainFrame.this, "О программе", false);
-                dialog.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-                dialog.setSize(WIDTH, HEIGHT);
-                dialog.setResizable(false);
+                Box labelBox = Box.createHorizontalBox();
+                JLabel l1 = new JLabel("Автор: Коробкин Александр, 6 группа");
+                l1.setFont(new Font("TimesRoman", Font.ROMAN_BASELINE, 20));
+                labelBox.add(Box.createHorizontalGlue());
+                labelBox.add(l1);
+                labelBox.add(Box.createHorizontalGlue());
 
-                Toolkit kit = Toolkit.getDefaultToolkit();
-                // Отцентрировать окно приложения на экране
-                dialog.setLocation((kit.getScreenSize().width - WIDTH) / 2, (kit.getScreenSize().height - HEIGHT) / 2);
-                JPanel panel = new JPanel();
-                JLabel about = new JLabel("Автор: Коробкин Александр, 6 группа");
-                ImageIcon image = new ImageIcon("author.jpg");
-                JLabel imageLabel = new JLabel();
-                imageLabel.setIcon(image);
-                panel.add(about);
-                panel.add(imageLabel);
-                dialog.add(panel);
-                dialog.setVisible(true);
+
+                ImageIcon icon = new ImageIcon("author.jpg");
+                JLabel image = new JLabel(icon);
+                Box imageBox = Box.createHorizontalBox();
+                imageBox.add(Box.createHorizontalGlue());
+                imageBox.add(image);
+                imageBox.add(Box.createHorizontalGlue());
+
+                mainPanel.add(Box.createVerticalGlue());
+                mainPanel.add(labelBox);
+                mainPanel.add(Box.createVerticalStrut(10));
+                mainPanel.add(imageBox);
+                mainPanel.add(Box.createVerticalGlue());
+
+
+                JOptionPane.showMessageDialog(MainFrame.this,
+                        mainPanel, "О программе", JOptionPane.INFORMATION_MESSAGE);
             }
         };
 
