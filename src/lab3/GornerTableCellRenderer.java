@@ -28,7 +28,7 @@ public class GornerTableCellRenderer implements TableCellRenderer {
                                                    Object value, boolean isSelected, boolean hasFocus, int row, int col) {
         String formattedDouble = formatter.format(value);
         label.setText(formattedDouble);
-        if (col != 0 && needle != null && needle.equals(formattedDouble)
+        if (col == 1 && needle != null && needle.equals(formattedDouble)
                 || rangeMin != null &&  rangeMax != null && (Double)value >= rangeMin && (Double)value <= rangeMax ) {
             panel.setBackground(Color.RED);
         } else {

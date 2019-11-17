@@ -278,11 +278,11 @@ public class MainFrame extends JFrame {
 
     protected void saveToGraphicsFile(File selectedFile) {
         try {
-            selectedFile = new File(addExtension(selectedFile.getName(), "bin"));
+            selectedFile = new File(addExtension(selectedFile.getAbsolutePath(), "bin"));
             DataOutputStream out = new DataOutputStream(new FileOutputStream(selectedFile));
             for (int i = 0; i < data.getRowCount(); i++) {
-                out.writeDouble((Double) data.getValueAt(i, 0));
-                out.writeDouble((Double) data.getValueAt(i, 1));
+                out.writeDouble((double) data.getValueAt(i, 0));
+                out.writeDouble((double) data.getValueAt(i, 1));
             }
             out.close();
         } catch (Exception e) {
@@ -293,7 +293,7 @@ public class MainFrame extends JFrame {
 
     protected void saveToTextFile(File selectedFile) {
         try {
-            selectedFile = new File(addExtension(selectedFile.getName(), "txt"));
+            selectedFile = new File(addExtension(selectedFile.getAbsolutePath(), "txt"));
             PrintStream out = new PrintStream(selectedFile);
             out.println("Результаты табулирования многочлена по схеме Горнера ");
             out.print("Многочлен: ");
