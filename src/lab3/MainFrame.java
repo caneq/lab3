@@ -323,7 +323,7 @@ public class MainFrame extends JFrame {
 
     protected void saveToCSVFile(File file, String delimiter){
         try{
-            file = new File(addExtension(file.getName(), "csv"));
+            file = new File(addExtension(file.getPath(), "csv"));
             PrintStream out = new PrintStream(file);
             int rowCount = data.getRowCount();
             int colCountMinus1 = data.getColumnCount() - 1;
